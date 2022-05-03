@@ -6,6 +6,8 @@ package kulhavy;
 
 import java.util.ArrayList;
 import java.lang.StringBuilder;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -26,8 +28,8 @@ public class Institute {
     public void addStation(Station station) {
         boolean isHere = false;
 
-        for (int i = 0; i < stations.size(); i++) {
-            if (station.getName() == stations.get(i).getName()) {
+        for (Station value : stations) {
+            if (station.getName().equals(value.getName())) {
                 isHere = true;
                 break;
             }
@@ -42,8 +44,8 @@ public class Institute {
         boolean isHere = false;
         int tempPos = 0;
 
-        for (int i = 0; i < stations.size(); i++) {
-            if (station == stations.get(i).getName()) {
+        for (Station value : stations) {
+            if (station.equals(value.getName())) {
                 isHere = true;
                 break;
             }
@@ -60,8 +62,8 @@ public class Institute {
         boolean isHere = false;
         int tempPos = 0;
 
-        for (int i = 0; i < stations.size(); i++) {
-            if (station == stations.get(i).getName()) {
+        for (Station value : stations) {
+            if (station.equals(value.getName())) {
                 isHere = true;
                 break;
             }
@@ -95,17 +97,47 @@ public class Institute {
         return stations.get(tempPos);
     }
 
-    public ArrayList<Station> getStationSorted(double longitude, double latitude) {
-        return stations; // TODO
-    }
+    public String getClosestStation(double longitude, double latitude)
+    {
+        double closestValue = Double.MAX_VALUE;
+        String closestName = "";
+        Station stationToTest = new Station("testovaci", longitude, latitude);
+        for(Station station : stations)
+        {
+            double currentDistance = station.getDistance(stationToTest);
+            if(currentDistance < closestValue)
+            {
+                closestValue = currentDistance;
+                closestName = station.getName();
+            }
+        }
 
-    // TODO
+        return String.format("Nejblizsi stanice je %s, vzdalena %s km", closestName, closestValue);
+    }
 
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder();
+        stations.sort(new Comparator<Station>() {
 
-        return str.append(stations).toString();
+            public int compare(Station s1, Station s2) {
+                return s1.getName().compareTo(s2.getName());
+            }
+        });
+
+        StringBuilder returnString = new StringBuilder("Všechny stanice:\n");
+
+        int i = stations.size() - 1;
+        for(Station station : stations)
+        {
+            if(i-- == 0)
+            {
+                returnString.append(station.getName());
+                continue;
+            }
+            returnString.append(station.getName()).append(", ");
+        }
+
+        return returnString.toString();
     }
 
     public static void main(String[] args) {

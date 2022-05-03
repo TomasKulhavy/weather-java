@@ -14,10 +14,11 @@ public class Station implements Comparable<Station> {
     private double longitude = 190.0;
     private double latitude = 190.0;
 
-    private final int MIN_LONG = -180;
-    private final int MAX_LONG = 180;
-    private final int MIN_LAT = -90;
-    private final int MAX_LAT = 90;
+    private final int EARTH_R = 6371;
+    private final double MIN_LONG = -180;
+    private final double MAX_LONG = 180;
+    private final double MIN_LAT = -90;
+    private final double MAX_LAT = 90;
 
     public Station(String name) {
         this.name = name;
@@ -70,11 +71,8 @@ public class Station implements Comparable<Station> {
         return true;
     }
 
-    public double getDistance(Station station2) {
-        double vzdalenost;
-        int r = 6371;
-        vzdalenost = 2 * r * Math.asin(Math.sqrt(Math.pow(Math.sin((Math.toRadians(station2.getLatitude()) - Math.toRadians(getLatitude())) / 2), 2) + Math.cos(Math.toRadians(getLatitude())) * Math.cos(Math.toRadians(station2.getLatitude())) * Math.pow(Math.sin((Math.toRadians(station2.getLongitude()) - Math.toRadians(getLongitude())) / 2), 2)));
-        return vzdalenost;
+    public double getDistance(Station station) {
+        return 2 * EARTH_R * Math.asin(Math.sqrt(Math.pow(Math.sin(((Math.toRadians(station.latitude - latitude))/2)),2) + Math.cos(Math.toRadians(latitude)) * Math.cos(Math.toRadians(station.latitude)) * Math.pow(Math.sin(((Math.toRadians(station.longitude - longitude))/2)),2)));
     }
 
     public double getDistanceFromTUL() {
