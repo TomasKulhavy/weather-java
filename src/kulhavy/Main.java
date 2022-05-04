@@ -1,10 +1,8 @@
 package kulhavy;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 /**
- *
  * @author tomas.kulhavy
  */
 public class Main {
@@ -28,7 +26,7 @@ public class Main {
             System.out.println("0 - Exit");
             System.out.println("Vyberte si moznost: ");
             int temp = sc.nextInt();
-            switch(temp) {
+            switch (temp) {
                 case 1:
                     System.out.println("Zadejte nazev stanice: ");
                     String name = sc.next();
@@ -71,7 +69,7 @@ public class Main {
                 default:
                     System.out.println("Nedefinovana akce!");
             }
-        } while (quit == false);
+        } while (!quit);
     }
 
 }

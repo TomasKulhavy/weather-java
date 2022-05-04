@@ -10,7 +10,6 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- *
  * @author tomas.kulhavy
  */
 public class Institute {
@@ -47,7 +46,7 @@ public class Institute {
             }
         }
 
-        if(isHere) {
+        if (isHere) {
             stations.remove(tempPos);
         } else {
             throw new UnsupportedOperationException("Tato stanice: " + getName() + "neexistuje!");
@@ -65,7 +64,7 @@ public class Institute {
             }
         }
 
-        if(isHere) {
+        if (isHere) {
             Station stationToEdit = stations.get(tempPos);
             stationToEdit.setLongitude(longitude);
             stationToEdit.setLatitude(latitude);
@@ -84,8 +83,7 @@ public class Institute {
         Station target = new Station("Target to measure", longitude, latitude);
         for (int i = 0; i < stations.size(); i++) {
             double temp = stations.get(i).getDistance(target);
-            if(temp < nearestDistance)
-            {
+            if (temp < nearestDistance) {
                 tempPos = i;
             }
         }
@@ -93,16 +91,13 @@ public class Institute {
         return stations.get(tempPos);
     }
 
-    public String getClosestStation(double longitude, double latitude)
-    {
+    public String getClosestStation(double longitude, double latitude) {
         double closestValue = Double.MAX_VALUE;
         String closestName = "";
         Station stationToTest = new Station("testovaci", longitude, latitude);
-        for(Station station : stations)
-        {
+        for (Station station : stations) {
             double currentDistance = station.getDistance(stationToTest);
-            if(currentDistance < closestValue)
-            {
+            if (currentDistance < closestValue) {
                 closestValue = currentDistance;
                 closestName = station.getName();
             }
@@ -118,10 +113,8 @@ public class Institute {
         StringBuilder returnString = new StringBuilder("Vsechny stanice:\n");
 
         int i = stations.size() - 1;
-        for(Station station : stations)
-        {
-            if(i-- == 0)
-            {
+        for (Station station : stations) {
+            if (i-- == 0) {
                 returnString.append(station.getName());
                 continue;
             }

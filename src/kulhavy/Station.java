@@ -5,7 +5,6 @@
 package kulhavy;
 
 /**
- *
  * @author tomas.kulhavy
  */
 public class Station implements Comparable<Station> {
@@ -72,7 +71,7 @@ public class Station implements Comparable<Station> {
     }
 
     public double getDistance(Station station) {
-        return 2 * EARTH_R * Math.asin(Math.sqrt(Math.pow(Math.sin(((Math.toRadians(station.latitude - latitude))/2)),2) + Math.cos(Math.toRadians(latitude)) * Math.cos(Math.toRadians(station.latitude)) * Math.pow(Math.sin(((Math.toRadians(station.longitude - longitude))/2)),2)));
+        return 2 * EARTH_R * Math.asin(Math.sqrt(Math.pow(Math.sin(((Math.toRadians(station.latitude - latitude)) / 2)), 2) + Math.cos(Math.toRadians(latitude)) * Math.cos(Math.toRadians(station.latitude)) * Math.pow(Math.sin(((Math.toRadians(station.longitude - longitude)) / 2)), 2)));
     }
 
     public double getDistanceFromTUL() {
