@@ -115,6 +115,6 @@ public class Station implements Comparable<Station> {
 
     @Override
     public int compareTo(Station o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.name.compareTo(o.name);
     }
 }

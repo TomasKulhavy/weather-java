@@ -6,8 +6,8 @@ package kulhavy;
 
 import java.util.ArrayList;
 import java.lang.StringBuilder;
-import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  *
@@ -15,7 +15,7 @@ import java.util.Comparator;
  */
 public class Institute {
     private String name;
-    private ArrayList<Station> stations = new ArrayList<Station>();
+    private List<Station> stations = new ArrayList<>();
 
     public Institute(String name) {
         this.name = name;
@@ -26,11 +26,8 @@ public class Institute {
     }
 
     public void addStation(Station station) {
-        boolean isHere = false;
-
         for (Station value : stations) {
             if (station.getName().equals(value.getName())) {
-                isHere = true;
                 throw new UnsupportedOperationException("Tato stanice jiz exituje!");
             }
         }
@@ -116,12 +113,7 @@ public class Institute {
 
     @Override
     public String toString() {
-        stations.sort(new Comparator<Station>() {
-
-            public int compare(Station s1, Station s2) {
-                return s1.getName().compareTo(s2.getName());
-            }
-        });
+        stations.sort(Comparator.comparing(Station::getName));
 
         StringBuilder returnString = new StringBuilder("Vsechny stanice:\n");
 
