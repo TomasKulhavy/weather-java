@@ -100,7 +100,7 @@ public class Station implements Comparable<Station> {
     public static void main(String[] args) {
         Station station1 = new Station("Jablonec nad Nisou");
         Station station2 = new Station("Liberec", 50.77, 15.07);
-        Station station3 = new Station("Sofia", 42.69, 23.32);
+        Station station3 = new Station("Amsterdam", 52.37, 4.84);
 
         System.out.println(station1.getName());
         System.out.println(station2.getLongitude());
@@ -113,7 +113,6 @@ public class Station implements Comparable<Station> {
         System.out.println("Vzdálenost je: " + station2.getDistance(station3) + " km");
     }
 
-    // TODO
     @Override
     public int compareTo(Station o) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

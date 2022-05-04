@@ -64,7 +64,7 @@ public class Main {
                     double longitudeClosest = sc.nextDouble();
                     System.out.println("Zadej zemepisnou sirku: ");
                     double latitudeClosest = sc.nextDouble();
-                    System.out.println(liberec.get(longitudeClosest, latitudeClosest));
+                    System.out.println(liberec.getClosestStation(longitudeClosest, latitudeClosest));
                     break;
                 case 0:
                     quit = true;

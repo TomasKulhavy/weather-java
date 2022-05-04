@@ -31,22 +31,21 @@ public class Institute {
         for (Station value : stations) {
             if (station.getName().equals(value.getName())) {
                 isHere = true;
-                break;
+                throw new UnsupportedOperationException("Tato stanice jiz exituje!");
             }
         }
 
-        if(!isHere) {
-            stations.add(station);
-        }
+        stations.add(station);
     }
 
     public void removeStation(String station) {
         boolean isHere = false;
         int tempPos = 0;
 
-        for (Station value : stations) {
-            if (station.equals(value.getName())) {
+        for (int i = 0; i < stations.size(); i++) {
+            if (station.equals(stations.get(i).getName())) {
                 isHere = true;
+                tempPos = i;
                 break;
             }
         }
@@ -54,7 +53,7 @@ public class Institute {
         if(isHere) {
             stations.remove(tempPos);
         } else {
-            throw new UnsupportedOperationException("This station is not in " + getName() + " institute!");
+            throw new UnsupportedOperationException("Tato stanice: " + getName() + "neexistuje!");
         }
     }
 
@@ -74,7 +73,7 @@ public class Institute {
             stationToEdit.setLongitude(longitude);
             stationToEdit.setLatitude(latitude);
         } else {
-            throw new UnsupportedOperationException("This station is not in " + getName() + " institute!");
+            throw new UnsupportedOperationException("Tato stanice: " + getName() + "neexistuje!");
         }
     }
 
@@ -124,7 +123,7 @@ public class Institute {
             }
         });
 
-        StringBuilder returnString = new StringBuilder("Všechny stanice:\n");
+        StringBuilder returnString = new StringBuilder("Vsechny stanice:\n");
 
         int i = stations.size() - 1;
         for(Station station : stations)
